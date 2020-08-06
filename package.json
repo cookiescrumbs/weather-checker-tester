@@ -1,0 +1,14 @@
+{
+  "name": "weather-checker-tester",
+  "version": "0.0.1",
+  "description": "A test framework that tests the weather checker app",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "author": "Steven Cook",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^4.12.1",
+    "typescript": "^3.9.7"
+  }
+}
