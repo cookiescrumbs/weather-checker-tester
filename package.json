@@ -4,7 +4,9 @@
   "description": "A test framework that tests the weather checker app",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "build:build-env": "docker-compose build",
+    "run:build-env": "docker-compose run build-env"
   },
   "author": "Steven Cook",
   "license": "ISC",
