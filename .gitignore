@@ -42,8 +42,6 @@ __ngcc_entry_points__.json
 .DS_Store
 Thumbs.db
 
-# Angular
-__ivy_ngcc__
 
 #cypress examples
 examples/*
