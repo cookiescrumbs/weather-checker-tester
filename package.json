@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A test framework that tests the weather checker app",
   "scripts": {
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "author": "Steven Cook",
   "license": "ISC",
