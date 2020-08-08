@@ -43,5 +43,6 @@ __ngcc_entry_points__.json
 Thumbs.db
 
 
-#cypress examples
+#cypress
 examples/*
+screenshots/*
