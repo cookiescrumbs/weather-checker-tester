@@ -37,8 +37,8 @@ describe('Feature: Weather Checker', () => {
                     it('And the Humidity', () => {
                         cy.wait('@validPostcode')
                         .then((xhr: any) => { // would use a shared type definition with the BE here
-                            const currently =  xhr.responseBody.currently;
-                            const timestamp =  currently.time;
+                            const currently = xhr.responseBody.currently;
+                            const timestamp = currently.time;
                             const temperature = currently.temperature;
                             const humidity = currently.humidity;
                             const formattedDateTime = moment.unix(timestamp).format('DD/MM/YYYY HH:mm:ss');
@@ -57,14 +57,16 @@ describe('Feature: Weather Checker', () => {
     describe('Scenario: Invalid postcode', () => {
         describe('When an invalid postcode is entered "EC1A 1BB"', () => {
             beforeEach(() => {
+
                 cy.server({});
                 cy.route({
                     method: 'POST',
                     url: '/api',
-                    status: 433,
-                    response: {"errorMessage":"Problem with Geocode API: Unable to find that address."}
+                    status: 435,
+                    response: {"errorMessage":"Invalid Address"}
                     
                 });
+
                 app.searchLocationForm().within(() => {
                     cy.get('input').type(invalidPostcode);
                     cy.contains('Search').click();
@@ -80,14 +82,16 @@ describe('Feature: Weather Checker', () => {
     describe('Scenario: Valid postcode that isn\'t found', () => {
         describe('When a valid postcode is entered that isn\'t found "B99 9AA"', () => {
             beforeEach(() => {
+
+                cy.server({});
+                cy.route({
+                    method: 'POST',
+                    url: '/api',
+                    status: 433,
+                    response: {"errorMessage":"Problem with Geocode API: Unable to find that address."}
+                });
+
                 app.searchLocationForm().within(() => {
-                    cy.server({});
-                    cy.route({
-                        method: 'POST',
-                        url: '/api',
-                        status: 433,
-                        response: { "errorMessage": "Problem with Geocode API: Unable to find that address." }
-                    });
                     cy.get('input').type(validNoneExistingPostcode);
                     cy.contains('Search').click();
                 });
