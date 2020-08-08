@@ -58,7 +58,13 @@ describe('Feature: Weather Checker', () => {
         describe('When an invalid postcode is entered "EC1A 1BB"', () => {
             beforeEach(() => {
                 cy.server({});
-                cy.route('POST', '/api', { "errorMessage":"Invalid Address" });
+                cy.route({
+                    method: 'POST',
+                    url: '/api',
+                    status: 433,
+                    response: {"errorMessage":"Problem with Geocode API: Unable to find that address."}
+                    
+                });
                 app.searchLocationForm().within(() => {
                     cy.get('input').type(invalidPostcode);
                     cy.contains('Search').click();
@@ -76,7 +82,12 @@ describe('Feature: Weather Checker', () => {
             beforeEach(() => {
                 app.searchLocationForm().within(() => {
                     cy.server({});
-                    cy.route('POST', '/api', { "errorMessage":"Problem with Geocode API: Unable to find that address." });
+                    cy.route({
+                        method: 'POST',
+                        url: '/api',
+                        status: 433,
+                        response: { "errorMessage": "Problem with Geocode API: Unable to find that address." }
+                    });
                     cy.get('input').type(validNoneExistingPostcode);
                     cy.contains('Search').click();
                 });
