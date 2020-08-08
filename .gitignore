@@ -45,4 +45,4 @@ Thumbs.db
 
 #cypress
 examples/*
-screenshots/*
+cypress/screenshots/*
