@@ -77,7 +77,7 @@ describe('Feature: Weather Checker', () => {
     });
 
 
-    describe('Scenario: Valid postcodes that isn\'t found', () => {
+    describe('Scenario: Valid postcode that isn\'t found', () => {
         describe('When a valid postcode is entered that isn\'t found "B99 9AA"', () => {
             beforeEach(() => {
                 app.searchLocationForm().within(() => {
