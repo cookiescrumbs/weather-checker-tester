@@ -1,4 +1,6 @@
 {
     "video": false,
-    "baseUrl": "https://serene-mountain-14043.herokuapp.com/"
+    "baseUrl": "https://serene-mountain-14043.herokuapp.com/",
+    "chromeWebSecurity": false,
+    "experimentalFetchPolyfill": true
 }
