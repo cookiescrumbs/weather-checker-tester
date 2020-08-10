@@ -5,14 +5,16 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "build:build-env": "docker-compose build",
-    "run:build-env": "docker-compose run build-env"
+    "record-fixtures": "./record-fixtures/index.js"
   },
   "author": "Steven Cook",
   "license": "ISC",
   "dependencies": {
+    "@types/crypto-js": "^3.1.47",
+    "crypto-js": "^4.0.0",
     "cypress": "^4.12.1",
     "moment": "^2.27.0",
+    "newman": "^5.1.2",
     "typescript": "^3.9.7"
   }
 }

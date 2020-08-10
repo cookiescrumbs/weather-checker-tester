@@ -6,6 +6,7 @@ services:
       volumes:
         - ${PWD}/cypress:/weather-checker-tester/cypress
         - ${PWD}/cypress.json:/weather-checker-tester/cypress.json
+        - ${PWD}/record-fixtures:/weather-checker-tester/record-fixtures
         # use the node_modules from inside the container and not from local machine
         - /weather-checker-tester/node_modules 
       stdin_open: true
@@ -17,6 +18,7 @@ services:
       volumes:
         - ${PWD}/cypress:/weather-checker-tester/cypress
         - ${PWD}/cypress.json:/weather-checker-tester/cypress.json
+        - ${PWD}/record-fixtures:/weather-checker-tester/record-fixtures
         # use the node_modules from inside the container and not from local machine
         - /weather-checker-tester/node_modules
-      command: npm run cypress:run
+      command: bash -c "npm run record-fixtures && npm run cypress:run"

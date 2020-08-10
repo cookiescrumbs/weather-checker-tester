@@ -1,11 +1,17 @@
 import { WeatherChecker } from '../support/app-object/weather-checker';
+import { getFixtureFileName, HTTP_METHOD } from '../support/get-fixture-file-name';
 import * as moment from 'moment';
+
+
 
 describe('Feature: Weather Checker', () => {
     let app: WeatherChecker;
-    const validPostcode: string = 'W6 0NW';
-    const invalidPostcode: string = 'EC1A 1BB';
-    const validNoneExistingPostcode: string = 'B99 9AA';
+    const validPostcode: string = 'W6 0NW',
+    invalidPostcode: string = 'EC1A 1BB',
+    validNoneExistingPostcode: string = 'B99 9AA',
+    fixtureFileValidPostCode: string = getFixtureFileName(HTTP_METHOD['POST'],`{"address": "${validPostcode}"}`,'api'),
+    fixtureFileinvalidPostcode: string = getFixtureFileName(HTTP_METHOD['POST'],`{"address": "${invalidPostcode}"}`,'api'),
+    fixtureFileValidNoneExistingPostcode: string =  getFixtureFileName(HTTP_METHOD['POST'],`{"address": "${validNoneExistingPostcode}"}`,'api');
     
     beforeEach(() => {
         app = new WeatherChecker();
@@ -21,10 +27,10 @@ describe('Feature: Weather Checker', () => {
     });
 
     describe('Scenario: Valid postcode', () => {
-        describe('When a valid postcode is entered "W6 0NW" that exists', () => {
+        describe('When a valid postcode is entered', () => {
             beforeEach(() => {
                 cy.server({});
-                cy.route('POST', '/api', 'fixture:valid-postcode.json').as('validPostcode');
+                cy.route('POST', '/api', `fixture:${fixtureFileValidPostCode}.json`).as('validPostcode');
     
                 app.searchLocationForm().within(() => {
                     cy.get('input').type(validPostcode);
@@ -55,7 +61,7 @@ describe('Feature: Weather Checker', () => {
 
 
     describe('Scenario: Invalid postcode', () => {
-        describe('When an invalid postcode is entered "EC1A 1BB"', () => {
+        describe('When an invalid postcode is entered', () => {
             beforeEach(() => {
 
                 cy.server({});
@@ -63,7 +69,7 @@ describe('Feature: Weather Checker', () => {
                     method: 'POST',
                     url: '/api',
                     status: 435,
-                    response: {"errorMessage":"Invalid Address"}
+                    response: `fixture:${fixtureFileinvalidPostcode}.json`
                     
                 });
 
@@ -80,7 +86,7 @@ describe('Feature: Weather Checker', () => {
 
 
     describe('Scenario: Valid postcode that isn\'t found', () => {
-        describe('When a valid postcode is entered that isn\'t found "B99 9AA"', () => {
+        describe('When a valid postcode is entered that isn\'t found', () => {
             beforeEach(() => {
 
                 cy.server({});
@@ -88,7 +94,7 @@ describe('Feature: Weather Checker', () => {
                     method: 'POST',
                     url: '/api',
                     status: 433,
-                    response: {"errorMessage":"Problem with Geocode API: Unable to find that address."}
+                    response: `fixture:${fixtureFileValidNoneExistingPostcode}.json`
                 });
 
                 app.searchLocationForm().within(() => {

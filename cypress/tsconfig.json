@@ -2,10 +2,20 @@
     "compilerOptions": {
       "strict": true,
       "baseUrl": "../node_modules",
+      "sourceMap": true,
+      "declaration": false,
       "target": "es5",
-      "lib": ["es5", "dom"],
       "types": ["cypress"],
-      "moduleResolution": "node" 
+      "moduleResolution": "node" ,
+      "typeRoots": [
+        "node_modules/@types",
+        "typings"
+      ],
+      "lib": [
+        "es2016",
+        "es2017",
+        "dom"
+      ]
     },
     "include": [
       "**/*.ts"
