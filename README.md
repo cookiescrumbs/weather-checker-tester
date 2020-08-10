@@ -12,7 +12,7 @@ In order to maintain quick stable feedback I've chosen to stub responses that co
  
 ## Usage
  
-The only dependecy you need to run the framework is [Docker](https://docs.docker.com/engine/install/)
+The only dependency you need to run the framework is [Docker](https://docs.docker.com/engine/install/)
 
 Then you'll just need to build the Docker image and run the tests.
  
