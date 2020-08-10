@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "4bb470f7-a8e1-4188-8ee3-ca5ffebedf4b",
+		"name": "weather-app-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid postcode",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"address\": \"W6 0NW\"}"
+				},
+				"url": {
+					"raw": "https://fierce-gorge-81903.herokuapp.com/api",
+					"protocol": "https",
+					"host": [
+						"fierce-gorge-81903",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				},
+				"description": "Response for weather in a location with a valid postcode"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid postcode",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"EC1A 1BB\"\n}"
+				},
+				"url": {
+					"raw": "https://fierce-gorge-81903.herokuapp.com/api",
+					"protocol": "https",
+					"host": [
+						"fierce-gorge-81903",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "valid none existing postcode",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"B99 9AA\"\n}"
+				},
+				"url": {
+					"raw": "https://fierce-gorge-81903.herokuapp.com/api",
+					"protocol": "https",
+					"host": [
+						"fierce-gorge-81903",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
